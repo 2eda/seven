@@ -1,0 +1,8 @@
+services:
+  mypython:
+    build: ./
+    tty: true
+    environment:
+      PORT: ${PORT}
+    ports:
+      - "${PORT}:${PORT}"
