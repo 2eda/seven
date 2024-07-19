@@ -1,8 +1,6 @@
 services:
-  mypython:
-    build: ./
-    tty: true
-    environment:
-      PORT: ${PORT}
-    ports:
-      - "${PORT}:${PORT}"
+  mygcc:
+    build: .
+    volumes:
+      - .:/app
+    command: make
