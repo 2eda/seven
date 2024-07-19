@@ -1,9 +1,13 @@
-FROM python:slim
+FROM gcc:latest
 
-COPY requirements.txt /root/
-RUN pip install -U pip \
-    && pip install -r /root/requirements.txt
+RUN apt-get update && apt-get install -y \
+    libopencv-dev \
+    libpcl-dev \
+    make \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY main.py start.sh /root/
-# RUN chmod +x /root/start.sh
-CMD [ "bash", "/root/start.sh" ]
+WORKDIR /app
+
+COPY . .
+
+CMD ["make"]
